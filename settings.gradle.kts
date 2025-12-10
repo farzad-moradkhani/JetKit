@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "JetKit"
 include(":app")
- 
+include(":app:jetkit")
