@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,6 +30,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import io.github.farzadmoradkhani.jetkit.ui.theme.Black
 import io.github.farzadmoradkhani.jetkit.ui.theme.JetKitTheme
 import io.github.farzadmoradkhani.jetkit.ui.theme.White
 
@@ -36,25 +38,19 @@ import io.github.farzadmoradkhani.jetkit.ui.theme.White
 fun BasicCard(
     title: String?,
     buttonText: String? = null,
-    buttonClick: (() -> Unit)? = null,
+    buttonClick: () -> Unit = {},
     content: @Composable () -> Unit = {}
 ) {
     Column (
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp, vertical = 12.dp)
-            .background(Color.White, RoundedCornerShape(11.dp))
+            .background(Color.White, RoundedCornerShape(20.dp))
 ,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         if (!title.isNullOrEmpty()) {
-            Text(
-                text = title,
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
-                modifier = Modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center
-            )
+            BasicTitle(title)
         }
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -65,6 +61,7 @@ fun BasicCard(
             Spacer(modifier = Modifier.height(8.dp))
             Button(
                 onClick = buttonClick,
+                colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary),
                 shape = RoundedCornerShape(11.dp),
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 11.dp, vertical = 5.dp)
             ) {
